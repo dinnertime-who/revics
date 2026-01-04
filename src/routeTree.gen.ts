@@ -9,67 +9,131 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PlatformLayoutRouteRouteImport } from './routes/_platform-layout/route'
-import { Route as PlatformLayoutIndexRouteImport } from './routes/_platform-layout/index'
+import { Route as PlatformRouteRouteImport } from './routes/_platform/route'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
+import { Route as AdminRouteRouteImport } from './routes/_admin/route'
+import { Route as PlatformIndexRouteImport } from './routes/_platform/index'
 import { Route as ApiSplatRouteImport } from './routes/api/$'
+import { Route as AuthSignUpIndexRouteImport } from './routes/_auth/sign-up/index'
+import { Route as AuthSignInIndexRouteImport } from './routes/_auth/sign-in/index'
+import { Route as AdminDashboardIndexRouteImport } from './routes/_admin/dashboard/index'
 
-const PlatformLayoutRouteRoute = PlatformLayoutRouteRouteImport.update({
-  id: '/_platform-layout',
+const PlatformRouteRoute = PlatformRouteRouteImport.update({
+  id: '/_platform',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PlatformLayoutIndexRoute = PlatformLayoutIndexRouteImport.update({
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformIndexRoute = PlatformIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => PlatformLayoutRouteRoute,
+  getParentRoute: () => PlatformRouteRoute,
 } as any)
 const ApiSplatRoute = ApiSplatRouteImport.update({
   id: '/api/$',
   path: '/api/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthSignUpIndexRoute = AuthSignUpIndexRouteImport.update({
+  id: '/sign-up/',
+  path: '/sign-up/',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthSignInIndexRoute = AuthSignInIndexRouteImport.update({
+  id: '/sign-in/',
+  path: '/sign-in/',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AdminDashboardIndexRoute = AdminDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/api/$': typeof ApiSplatRoute
-  '/': typeof PlatformLayoutIndexRoute
+  '/': typeof PlatformIndexRoute
+  '/dashboard': typeof AdminDashboardIndexRoute
+  '/sign-in': typeof AuthSignInIndexRoute
+  '/sign-up': typeof AuthSignUpIndexRoute
 }
 export interface FileRoutesByTo {
   '/api/$': typeof ApiSplatRoute
-  '/': typeof PlatformLayoutIndexRoute
+  '/': typeof PlatformIndexRoute
+  '/dashboard': typeof AdminDashboardIndexRoute
+  '/sign-in': typeof AuthSignInIndexRoute
+  '/sign-up': typeof AuthSignUpIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_platform-layout': typeof PlatformLayoutRouteRouteWithChildren
+  '/_admin': typeof AdminRouteRouteWithChildren
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/_platform': typeof PlatformRouteRouteWithChildren
   '/api/$': typeof ApiSplatRoute
-  '/_platform-layout/': typeof PlatformLayoutIndexRoute
+  '/_platform/': typeof PlatformIndexRoute
+  '/_admin/dashboard/': typeof AdminDashboardIndexRoute
+  '/_auth/sign-in/': typeof AuthSignInIndexRoute
+  '/_auth/sign-up/': typeof AuthSignUpIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/api/$' | '/'
+  fullPaths: '/api/$' | '/' | '/dashboard' | '/sign-in' | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
-  to: '/api/$' | '/'
-  id: '__root__' | '/_platform-layout' | '/api/$' | '/_platform-layout/'
+  to: '/api/$' | '/' | '/dashboard' | '/sign-in' | '/sign-up'
+  id:
+    | '__root__'
+    | '/_admin'
+    | '/_auth'
+    | '/_platform'
+    | '/api/$'
+    | '/_platform/'
+    | '/_admin/dashboard/'
+    | '/_auth/sign-in/'
+    | '/_auth/sign-up/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  PlatformLayoutRouteRoute: typeof PlatformLayoutRouteRouteWithChildren
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  PlatformRouteRoute: typeof PlatformRouteRouteWithChildren
   ApiSplatRoute: typeof ApiSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_platform-layout': {
-      id: '/_platform-layout'
+    '/_platform': {
+      id: '/_platform'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof PlatformLayoutRouteRouteImport
+      preLoaderRoute: typeof PlatformRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_platform-layout/': {
-      id: '/_platform-layout/'
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_admin': {
+      id: '/_admin'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_platform/': {
+      id: '/_platform/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof PlatformLayoutIndexRouteImport
-      parentRoute: typeof PlatformLayoutRouteRoute
+      preLoaderRoute: typeof PlatformIndexRouteImport
+      parentRoute: typeof PlatformRouteRoute
     }
     '/api/$': {
       id: '/api/$'
@@ -78,22 +142,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth/sign-up/': {
+      id: '/_auth/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof AuthSignUpIndexRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/sign-in/': {
+      id: '/_auth/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthSignInIndexRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_admin/dashboard/': {
+      id: '/_admin/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AdminDashboardIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
   }
 }
 
-interface PlatformLayoutRouteRouteChildren {
-  PlatformLayoutIndexRoute: typeof PlatformLayoutIndexRoute
+interface AdminRouteRouteChildren {
+  AdminDashboardIndexRoute: typeof AdminDashboardIndexRoute
 }
 
-const PlatformLayoutRouteRouteChildren: PlatformLayoutRouteRouteChildren = {
-  PlatformLayoutIndexRoute: PlatformLayoutIndexRoute,
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminDashboardIndexRoute: AdminDashboardIndexRoute,
 }
 
-const PlatformLayoutRouteRouteWithChildren =
-  PlatformLayoutRouteRoute._addFileChildren(PlatformLayoutRouteRouteChildren)
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
+interface AuthRouteRouteChildren {
+  AuthSignInIndexRoute: typeof AuthSignInIndexRoute
+  AuthSignUpIndexRoute: typeof AuthSignUpIndexRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthSignInIndexRoute: AuthSignInIndexRoute,
+  AuthSignUpIndexRoute: AuthSignUpIndexRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
+interface PlatformRouteRouteChildren {
+  PlatformIndexRoute: typeof PlatformIndexRoute
+}
+
+const PlatformRouteRouteChildren: PlatformRouteRouteChildren = {
+  PlatformIndexRoute: PlatformIndexRoute,
+}
+
+const PlatformRouteRouteWithChildren = PlatformRouteRoute._addFileChildren(
+  PlatformRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  PlatformLayoutRouteRoute: PlatformLayoutRouteRouteWithChildren,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
+  PlatformRouteRoute: PlatformRouteRouteWithChildren,
   ApiSplatRoute: ApiSplatRoute,
 }
 export const routeTree = rootRouteImport
