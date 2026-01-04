@@ -1,0 +1,1 @@
+pm2 start "cloudflared tunnel run my-dev-tunnel" --name cf-tunnel
