@@ -1,5 +1,5 @@
 {
-  "projectName": "revix",
+  "projectName": "revics",
   "mode": "file-router",
   "typescript": true,
   "tailwind": true,

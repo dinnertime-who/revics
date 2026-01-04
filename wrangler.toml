@@ -1,4 +1,4 @@
-name = "revix"
+name = "revics"
 main = "@tanstack/react-start/server-entry"
 
 compatibility_date = "2025-09-02"
@@ -8,24 +8,28 @@ compatibility_flags = ["nodejs_compat"]
 [vars]
 ENVIRONMENT = "production"
 
+[[kv_namespaces]]
+binding = "KV"
+id = "3a14c5f234554f468ff56ad9e00d99d7"
+
 [[d1_databases]]
 binding = "DB"
-database_name = "revix"
-database_id = "43d067df-7269-40c0-87a9-6380acf6c33a"
+database_name = "revics"
+database_id = "6c6a2732-7b84-49a9-aa53-5fd5b01caaca"
 migrations_dir = "drizzle/migrations"
 
 [[r2_buckets]]
 binding = "BUCKET"
-bucket_name = "revix-assets"
-preview_bucket_name = "revix-assets-preview"
+bucket_name = "revics-assets"
+preview_bucket_name = "revics-assets-preview"
 
 [[vectorize]]
 binding = "VECTORIZE"
-index_name = "revix-index"
+index_name = "revics-index"
 
 [[analytics_engine_datasets]]
 binding = "ANALYTICS"
-dataset = "revix-analytics"
+dataset = "revics-analytics"
 
 [observability]
 [observability.logs]
@@ -43,28 +47,32 @@ binding = "AI"
 [env.preview]
 vars = { ENVIRONMENT = "preview" }
 
+[[env.preview.kv_namespaces]]
+binding = "KV"
+id = "914675b5dcea4764a137f0bd0aa7ee0d"
+
 # D1: 프리뷰용 별도 DB 연결
 [[env.preview.d1_databases]]
 binding = "DB"
-database_name = "revix-preview"
-database_id = "51249df6-6a3f-43cf-adf5-6875ef46298a"
+database_name = "revics-preview"
+database_id = "75ea69c1-8fc2-4fc2-bc33-49d37afee52b"
 migrations_dir = "drizzle/migrations"
 
 # R2: 프리뷰 환경에서도 동일한 바인딩 이름을 사용하되 버킷만 교체
 [[env.preview.r2_buckets]]
 binding = "BUCKET"
-bucket_name = "revix-assets-preview"
-preview_bucket_name = "revix-assets-preview"
+bucket_name = "revics-assets-preview"
+preview_bucket_name = "revics-assets-preview"
 
 # Vectorize: 프리뷰 전용 인덱스
 [[env.preview.vectorize]]
 binding = "VECTORIZE"
-index_name = "revix-index-preview"
+index_name = "revics-index-preview"
 
 # Analytics: 프리뷰 전용 데이터셋
 [[env.preview.analytics_engine_datasets]]
 binding = "ANALYTICS"
-dataset = "revix-analytics-preview"
+dataset = "revics-analytics-preview"
 
 # AI: 프리뷰 전용 AI 바인딩
 [env.preview.ai]
