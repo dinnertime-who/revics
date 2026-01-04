@@ -1,7 +1,7 @@
 name = "revics"
 main = "@tanstack/react-start/server-entry"
 
-compatibility_date = "2025-09-02"
+compatibility_date = "2025-11-17"
 compatibility_flags = ["nodejs_compat"]
 
 # [Production - 기본 환경]
