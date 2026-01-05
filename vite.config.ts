@@ -15,13 +15,9 @@ const config = defineConfig(() => {
       port: 3000,
       allowedHosts: process.env.ALLOWED_HOSTS ? process.env.ALLOWED_HOSTS.split(',') : ['localhost'],
     },
-    environments: {
-      revics: {
-        define: {
-          VITE_APP_TITLE: JSON.stringify(process.env.VITE_APP_TITLE),
-          VITE_APP_URL: JSON.stringify(process.env.VITE_APP_URL),
-        }
-      }
+    define: {
+      VITE_APP_TITLE: JSON.stringify(process.env.VITE_APP_TITLE),
+      VITE_APP_URL: JSON.stringify(process.env.VITE_APP_URL),
     },
     plugins: [
       devtools(),
