@@ -2,7 +2,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, ErrorComponent, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { createIsomorphicFn } from "@tanstack/react-start";
+import { getEnv } from "@/env";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -10,42 +10,29 @@ interface MyRouterContext {
   queryClient: QueryClient;
 }
 
-const getEnv = createIsomorphicFn()
-  .server(() => {
-    console.log("server", process.env);
-    return {
-      APP_TITLE: process.env.VITE_APP_TITLE,
-      APP_URL: process.env.VITE_APP_URL,
-    };
-  })
-  .client(() => {
-    console.log("client", import.meta.env);
-    return {
-      APP_TITLE: import.meta.env.VITE_APP_TITLE,
-      APP_URL: import.meta.env.VITE_APP_URL,
-    };
-  });
-
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { title: getEnv().APP_TITLE },
-      { name: "description", content: "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅" },
-      { name: "keywords", content: "레빅스, Revics, 트래픽, 전송료, 0원, AI, 기반, 무제한, 이미지, 호스팅, 무료" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "og:title", content: getEnv().APP_TITLE },
-      { name: "og:description", content: "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅" },
-      // { name: "og:image", content: "https://revics.kr/og-image.png" },
-      { name: "og:url", content: getEnv().APP_URL },
-      { name: "og:type", content: "website" },
-      { name: "og:locale", content: "ko_KR" },
-      { name: "og:site_name", content: "레빅스(Revics)" },
-      { name: "og:image:width", content: "1200" },
-      { name: "og:image:height", content: "630" },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
+  head: async () => {
+    const env = await getEnv();
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { title: env.VITE_APP_TITLE },
+        { name: "description", content: "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅" },
+        { name: "keywords", content: "레빅스, Revics, 트래픽, 전송료, 0원, AI, 기반, 무제한, 이미지, 호스팅, 무료" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "og:title", content: env.VITE_APP_TITLE },
+        { name: "og:description", content: "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅" },
+        // { name: "og:image", content: "https://revics.kr/og-image.png" },
+        { name: "og:url", content: env.VITE_APP_URL },
+        { name: "og:type", content: "website" },
+        { name: "og:locale", content: "ko_KR" },
+        { name: "og:site_name", content: "레빅스(Revics)" },
+        { name: "og:image:width", content: "1200" },
+        { name: "og:image:height", content: "630" },
+      ],
+      links: [{ rel: "stylesheet", href: appCss }],
+    };
+  },
   shellComponent: RootDocument,
   notFoundComponent: NotFound,
   errorComponent: ({ error }) => {

@@ -1,41 +1,30 @@
-import { createEnv } from "@t3-oss/env-core";
+import { createServerFn, createServerOnlyFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-export const env = createEnv({
-  server: {},
+/**
+ * `VITE_`로 시작하는 키만 추출하는 유틸리티 타입
+ */
+export type ExtractViteKeys<T> = {
+  [K in keyof T as K extends `VITE_${string}` ? K : never]: T[K];
+};
 
-  /**
-   * The prefix that client-side variables must have. This is enforced both at
-   * a type-level and at runtime.
-   */
-  clientPrefix: "VITE_",
+const publicEnvSchema = z.object({
+  VITE_APP_TITLE: z.string(),
+  VITE_APP_URL: z.string(),
+});
 
-  client: {
-    VITE_APP_TITLE: z.string(),
-    VITE_APP_URL: z.string(),
-  },
+const envSchema = publicEnvSchema.extend({});
 
-  /**
-   * What object holds the environment variables at runtime. This is usually
-   * `process.env` or `import.meta.env`.
-   */
-  runtimeEnv: {
-    ...process.env,
-    ...import.meta.env,
-  },
+export const getServerEnv = createServerOnlyFn(() => {
+  return envSchema.parse(process.env);
+});
 
-  /**
-   * By default, this library will feed the environment variables directly to
-   * the Zod validator.
-   *
-   * This means that if you have an empty string for a value that is supposed
-   * to be a number (e.g. `PORT=` in a ".env" file), Zod will incorrectly flag
-   * it as a type mismatch violation. Additionally, if you have an empty string
-   * for a value that is supposed to be a string with a default value (e.g.
-   * `DOMAIN=` in an ".env" file), the default value will never be applied.
-   *
-   * In order to solve these issues, we recommend that all new projects
-   * explicitly specify this option as true.
-   */
-  emptyStringAsUndefined: true,
+export const getEnv = createServerFn({ method: "GET" }).handler(() => {
+  const serverEnv = getServerEnv();
+
+  const env = Object.fromEntries(
+    Object.entries(serverEnv).filter(([key]) => key.startsWith("VITE_")),
+  ) as ExtractViteKeys<typeof serverEnv>;
+
+  return env;
 });

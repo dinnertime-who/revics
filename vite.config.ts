@@ -10,20 +10,10 @@ import { cloudflare } from '@cloudflare/vite-plugin'
 dotenvConfig({ path: ['.env.local', '.env'] })
 
 const config = defineConfig(() => {
-  console.log(process.env);
-  console.log(import.meta.env);
   return {
     server: {
       port: 3000,
       allowedHosts: process.env.ALLOWED_HOSTS ? process.env.ALLOWED_HOSTS.split(',') : ['localhost'],
-    },
-    environments: {
-      revics: {
-        define: {
-          'import.meta.env.VITE_APP_TITLE': JSON.stringify(process.env.VITE_APP_TITLE),
-          'import.meta.env.VITE_APP_URL': JSON.stringify(process.env.VITE_APP_URL),
-        }
-      }
     },
     plugins: [
       devtools(),
