@@ -7,6 +7,8 @@ compatibility_flags = ["nodejs_compat"]
 # [Production - 기본 환경]
 [vars]
 ENVIRONMENT = "production"
+VITE_APP_TITLE = "레빅스(Revix) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅"
+VITE_APP_URL = "https://revics.app"
 
 [[kv_namespaces]]
 binding = "KV"
@@ -46,6 +48,7 @@ binding = "AI"
 # ---------------------------------------------------------
 [env.preview.vars]
 ENVIRONMENT = "preview"
+
 
 [[env.preview.kv_namespaces]]
 binding = "KV"
