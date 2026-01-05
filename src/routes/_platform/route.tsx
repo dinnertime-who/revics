@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_platform")({
 function RouteComponent() {
   return (
     <div>
-      <main>
+      <main className="bg-[#030305]">
         <Outlet />
       </main>
     </div>

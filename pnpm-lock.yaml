@@ -17,6 +17,9 @@ importers:
       '@fontsource/pretendard':
         specifier: ^5.2.5
         version: 5.2.5
+      '@iconify/react':
+        specifier: ^6.0.2
+        version: 6.0.2(react@19.2.3)
       '@paralleldrive/cuid2':
         specifier: ^3.0.6
         version: 3.0.6
@@ -1120,6 +1123,14 @@ packages:
 
   '@fontsource/pretendard@5.2.5':
     resolution: {integrity: sha512-UAj3l+Exfx6Sq5hySbhTQhNzkZnhzBxQdHySmjo2lifXyXpMAHv7GD7hAQTLgZfBd1WixJJkmynfJbOp+TAckg==}
+
+  '@iconify/react@6.0.2':
+    resolution: {integrity: sha512-SMmC2sactfpJD427WJEDN6PMyznTFMhByK9yLW0gOTtnjzzbsi/Ke/XqsumsavFPwNiXs8jSiYeZTmLCLwO+Fg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -4267,6 +4278,13 @@ snapshots:
   '@floating-ui/utils@0.2.10': {}
 
   '@fontsource/pretendard@5.2.5': {}
+
+  '@iconify/react@6.0.2(react@19.2.3)':
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 19.2.3
+
+  '@iconify/types@2.0.0': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
