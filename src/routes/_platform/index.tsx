@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_platform/")({
   component: RouteComponent,
@@ -498,12 +498,12 @@ function RouteComponent() {
               </div>
               <p className="text-sm text-slate-400 mb-8">개인 프로젝트 및 초기 스타트업을 위한 기본 플랜</p>
 
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="block w-full py-2.5 rounded-lg border border-white/10 text-center text-sm font-medium text-white hover:bg-white/5 transition-colors mb-8"
               >
                 시작하기
-              </a>
+              </Link>
 
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-sm text-slate-300">
@@ -533,12 +533,12 @@ function RouteComponent() {
               </div>
               <p className="text-sm text-slate-400 mb-8">본격적인 서비스를 위한 넉넉한 용량과 AI 기능</p>
 
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="block w-full py-2.5 rounded-lg bg-indigo-600 text-center text-sm font-medium text-white hover:bg-indigo-500 transition-colors mb-8 shadow-lg shadow-indigo-500/20"
               >
                 지금 시작하기
-              </a>
+              </Link>
 
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-sm text-slate-300">
@@ -568,10 +568,10 @@ function RouteComponent() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
-              <a href="/" className="text-lg font-semibold tracking-tighter text-white flex items-center gap-2 mb-4">
+              <Link to="/" className="text-lg font-semibold tracking-tighter text-white flex items-center gap-2 mb-4">
                 <div className="w-4 h-4 bg-linear-to-br from-indigo-500 to-cyan-400 rounded-sm"></div>
                 REVIX
-              </a>
+              </Link>
               <p className="text-xs text-slate-500 leading-relaxed">
                 AI 통합형 고성능 무제한 이미지 호스팅 솔루션.
                 <br />
@@ -582,24 +582,24 @@ function RouteComponent() {
               <h4 className="text-sm font-medium text-white mb-4">Product</h4>
               <ul className="space-y-2 text-xs text-slate-500">
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Features
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Integrations
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Pricing
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Changelog
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -607,19 +607,19 @@ function RouteComponent() {
               <h4 className="text-sm font-medium text-white mb-4">Resources</h4>
               <ul className="space-y-2 text-xs text-slate-500">
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Documentation
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     API Reference
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Community
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -627,19 +627,19 @@ function RouteComponent() {
               <h4 className="text-sm font-medium text-white mb-4">Company</h4>
               <ul className="space-y-2 text-xs text-slate-500">
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Blog
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="hover:text-slate-300 transition-colors">
+                  <Link to="/" className="hover:text-slate-300 transition-colors">
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
