@@ -2,10 +2,7 @@ import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
 export const env = createEnv({
-  server: {
-    APP_TITLE: z.string(),
-    APP_URL: z.string(),
-  },
+  server: {},
 
   /**
    * The prefix that client-side variables must have. This is enforced both at
@@ -13,7 +10,10 @@ export const env = createEnv({
    */
   clientPrefix: "VITE_",
 
-  client: {},
+  client: {
+    VITE_APP_TITLE: z.string(),
+    VITE_APP_URL: z.string(),
+  },
 
   /**
    * What object holds the environment variables at runtime. This is usually

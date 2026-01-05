@@ -7,8 +7,8 @@ compatibility_flags = ["nodejs_compat"]
 # [Production - 기본 환경]
 [vars]
 ENVIRONMENT = "production"
-APP_TITLE = "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅"
-APP_URL = "https://revics.app"
+VITE_APP_TITLE = "레빅스(Revics) - 트래픽 전송료 0원, AI 기반 무제한 이미지 호스팅"
+VITE_APP_URL = "https://revics.app"
 
 [[kv_namespaces]]
 binding = "KV"
