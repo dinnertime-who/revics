@@ -1,12 +1,5 @@
-import { createServerFn, createServerOnlyFn } from "@tanstack/react-start";
+import { createIsomorphicFn, createServerFn, createServerOnlyFn } from "@tanstack/react-start";
 import { z } from "zod";
-
-/**
- * `VITE_`로 시작하는 키만 추출하는 유틸리티 타입
- */
-export type ExtractViteKeys<T> = {
-  [K in keyof T as K extends `VITE_${string}` ? K : never]: T[K];
-};
 
 const publicEnvSchema = z.object({
   VITE_APP_TITLE: z.string(),
@@ -19,12 +12,19 @@ export const getServerEnv = createServerOnlyFn(() => {
   return envSchema.parse(process.env);
 });
 
-export const getEnv = createServerFn({ method: "GET" }).handler(() => {
+const getServerEnvFn = createServerFn({ method: "GET" }).handler(() => {
   const serverEnv = getServerEnv();
-
-  const env = Object.fromEntries(
-    Object.entries(serverEnv).filter(([key]) => key.startsWith("VITE_")),
-  ) as ExtractViteKeys<typeof serverEnv>;
-
-  return env;
+  const env = Object.fromEntries(Object.entries(serverEnv).filter(([key]) => key.startsWith("VITE_")));
+  return env as z.infer<typeof publicEnvSchema>;
 });
+
+export const getEnv = createIsomorphicFn()
+  .server(async () => {
+    return getServerEnv();
+  })
+  .client(async () => {
+    if (!(window as any).env) {
+      (window as any).env = await getServerEnvFn();
+    }
+    return publicEnvSchema.parse((window as any).env);
+  });
