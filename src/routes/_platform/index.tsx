@@ -77,7 +77,7 @@ function RouteComponent() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                 <div className="ml-4 px-3 py-1 bg-black/40 rounded text-[10px] text-slate-500 font-mono w-64 border border-white/5 flex justify-between items-center">
-                  <span>revix.io/dashboard/images</span>
+                  <span>revics.io/dashboard/images</span>
                   <Icon icon="lucide:lock" width="10"></Icon>
                 </div>
               </div>
@@ -170,10 +170,10 @@ function RouteComponent() {
                     </div>
                   </div>
                 </div>
-                {/* Revix */}
+                {/* Revics */}
                 <div>
                   <div className="flex justify-between text-xs mb-1 text-indigo-300">
-                    <span>Revix (레빅스)</span>
+                    <span>Revics (레빅스)</span>
                     <span>₩ 0</span>
                   </div>
                   <div className="h-8 w-full bg-slate-800 rounded-md overflow-hidden relative border border-indigo-500/30">
@@ -251,7 +251,7 @@ function RouteComponent() {
                   <div className="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
                 </div>
                 <div className="bg-black/50 rounded px-3 py-1 text-xs text-slate-400 font-mono flex-1 text-center truncate">
-                  https://cdn.revix.io/u/banner-main.png
+                  https://cdn.revics.io/u/banner-main.png
                 </div>
               </div>
               <div className="p-6 bg-[#050507]">
@@ -570,7 +570,7 @@ function RouteComponent() {
             <div className="col-span-1 md:col-span-1">
               <Link to="/" className="text-lg font-semibold tracking-tighter text-white flex items-center gap-2 mb-4">
                 <div className="w-4 h-4 bg-linear-to-br from-indigo-500 to-cyan-400 rounded-sm"></div>
-                REVIX
+                REVICS
               </Link>
               <p className="text-xs text-slate-500 leading-relaxed">
                 AI 통합형 고성능 무제한 이미지 호스팅 솔루션.
@@ -645,7 +645,7 @@ function RouteComponent() {
             </div>
           </div>
           <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[10px] text-slate-600">© 2024 Revix Inc. All rights reserved.</p>
+            <p className="text-[10px] text-slate-600">© 2024 Revics Inc. All rights reserved.</p>
             <div className="flex gap-4">
               <Icon
                 icon="lucide:twitter"

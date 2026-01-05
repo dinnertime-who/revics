@@ -16,7 +16,7 @@ function RouteComponent() {
           <div className="flex items-center gap-2">
             <Link to="/" className="text-xl font-semibold tracking-tighter text-white flex items-center gap-2">
               <div className="w-5 h-5 bg-linear-to-br from-indigo-500 to-cyan-400 rounded-sm"></div>
-              REVIX
+              REVICS
             </Link>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
