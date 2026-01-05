@@ -46,7 +46,7 @@ function RouteComponent() {
           </div>
         </div>
       </nav>
-      <main className="">
+      <main className="main-transition">
         <Outlet />
       </main>
     </div>

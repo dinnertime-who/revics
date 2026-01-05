@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: for window.env */
 import { createIsomorphicFn, createServerFn, createServerOnlyFn } from "@tanstack/react-start";
 import { z } from "zod";
 
@@ -6,7 +7,10 @@ const publicEnvSchema = z.object({
   VITE_APP_URL: z.string(),
 });
 
-const envSchema = publicEnvSchema.extend({});
+const envSchema = publicEnvSchema.extend({
+  BETTER_AUTH_URL: z.string().optional(),
+  BETTER_AUTH_SECRET: z.string().optional(),
+});
 
 export const getServerEnv = createServerOnlyFn(() => {
   return envSchema.parse(process.env);
@@ -20,11 +24,17 @@ const getServerEnvFn = createServerFn({ method: "GET" }).handler(() => {
 
 export const getEnv = createIsomorphicFn()
   .server(async () => {
-    return getServerEnv();
+    return {
+      isServer: true,
+      ...getServerEnv(),
+    } as const;
   })
   .client(async () => {
     if (!(window as any).env) {
       (window as any).env = await getServerEnvFn();
     }
-    return publicEnvSchema.parse((window as any).env);
+    return {
+      isServer: false,
+      ...publicEnvSchema.parse((window as any).env),
+    } as const;
   });

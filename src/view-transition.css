@@ -1,29 +1,42 @@
-::view-transition-old(root) {
-  animation-name: fade-out;
+.main-transition {
+  view-transition-name: main-transition;
 }
 
-::view-transition-new(root) {
-  animation-name: fade-in;
+/* 1. 기본 브라우저 애니메이션 제거 (선택 사항) */
+::view-transition-old(main-transition),
+::view-transition-new(main-transition) {
+  animation-duration: 0.3s; /* 애니메이션 속도 조절 */
+  animation-fill-mode: both;
 }
 
-@keyframes fade-out {
+/* 2. 이전 페이지가 사라지는 효과 (Fade-out) */
+::view-transition-old(main-transition) {
+  animation-name: vt-fade-out;
+}
+
+/* 3. 다음 페이지가 나타나는 효과 (Fade-in) */
+::view-transition-new(main-transition) {
+  animation-name: vt-fade-in;
+}
+
+@keyframes vt-fade-out {
   from {
     opacity: 1;
-    translate: 0 0;
+    scale: 1;
   }
   to {
     opacity: 0;
-    translate: 0 5%;
+    scale: 0.95;
   }
 }
 
-@keyframes fade-in {
+@keyframes vt-fade-in {
   from {
     opacity: 0;
-    translate: 0 5%;
+    scale: 0.95;
   }
   to {
     opacity: 1;
-    translate: 0 0;
+    scale: 1;
   }
 }
