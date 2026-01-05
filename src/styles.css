@@ -9,6 +9,7 @@
 @import '@fontsource/pretendard/700.css';
 @import '@fontsource/pretendard/800.css';
 @import '@fontsource/pretendard/900.css';
+@import './view-transition.css';
 
 @custom-variant dark (&:is(.dark *));
 
